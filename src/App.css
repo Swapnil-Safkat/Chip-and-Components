@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+.bg-site{
+  background-color: #f3f3f3;
+}
+.btn-img-size{
+  height:4rem;
+  width: 8rem;
+}
+.menu-logo-size{
+}
+.menu-logo-size img{
+  height: 2rem;
+  width: 3rem;
+}
+hr{
+  height: 1px !important;
+  background-color: #9a9a9a83 !important;
+  border: none;
+}
+.active{
+  color: black;
+  background-color: rgb(235, 235, 235);
+  margin-left: 0;
+  padding: 8px 16px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+}
