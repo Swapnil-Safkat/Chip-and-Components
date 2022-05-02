@@ -32,7 +32,7 @@ const user = true;
         <hr className='mb-6'/>
         <Link className={navLinkClass} to= { '/home'}><HomeIcon className='w-5 '/><span className={menuTextClass}>Home</span></Link>
         <NavLink className={navLinkClass} to= { '/home#inventory'}><ChipIcon className='w-5 '/><span className={menuTextClass}>Inventory</span></NavLink>
-        <NavLink className={navLinkClass} to= { '/manage-inventory'}><CollectionIcon className='w-5 '/><span className={menuTextClass}>Manage Inventory</span></NavLink>
+        <NavLink className={navLinkClass} to= { '/manage-inventory'}><CollectionIcon className='w-5 '/><span className={menuTextClass}>Manage</span></NavLink>
         <NavLink className={navLinkClass} to= { '/'}><ViewGridAddIcon className='w-5 '/><span className={menuTextClass}>Add New Item</span></NavLink>
         {user &&
           <div className='my-6'>

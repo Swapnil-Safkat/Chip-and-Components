@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "chip-and-components",
     "public": "build",
     "ignore": [
       "firebase.json",
