@@ -66,3 +66,8 @@ hr{
 .active:hover{
   border: none;
 }
+.bg-login{
+  background-image: url('./Images/login/background.png');
+  background-repeat: no-repeat;
+  overflow: visible;
+}
