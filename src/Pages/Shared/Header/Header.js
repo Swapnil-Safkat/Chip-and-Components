@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../Images/logo.png';
 import {
   HomeIcon,
@@ -16,9 +16,15 @@ import {
 } from '@heroicons/react/solid';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../Firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
+  const handleSignOut = ()=>{
+    signOut(auth);
+    navigate('/login')
+  };
   //const user = true;
   const navLinkClass = 'text-xs sm:text-sm md:text-base py-1 px-3 mx-3 my-3 font-semibold text-gray-500 flex items-center hover:text-blue-900 hover:bg-blue-200/50 hover:rounded-full';
   const menuTextClass = 'ml-4 hidden sm:block'
@@ -49,7 +55,7 @@ const Header = () => {
             <div className='my-6'>
               <hr />
               <p className='text-gray-400 text-xs font-semibold pl-6 pt-4'>Authentication</p>
-              <NavLink className={navLinkClass} to={'/'}><LogoutIcon className='w-5 ' /><span className={menuTextClass}>Sign Out</span></NavLink>
+              <button onClick={handleSignOut} className={navLinkClass}><LogoutIcon className='w-5 ' /><span className={menuTextClass}>Sign Out</span></button>
             </div>
             :
             <div className='my-6'>
@@ -65,7 +71,7 @@ const Header = () => {
         {
           user &&
           <div className='hidden sm:block'>
-            <Link className='text-xs sm:text-sm md:text-base py-1 px-3 mx-3 my-3 font-semibold flex items-center hover:text-blue-900 hover:bg-blue-200/50 hover:rounded-full' to={'/login'}><UserCircleIcon className='w-8 mr-2' /><span className=''>Swapnil Safkat</span></Link>
+              <Link className='text-xs sm:text-sm md:text-base py-1 px-3 mx-3 my-3 font-semibold flex items-center hover:text-blue-900 hover:bg-blue-200/50 hover:rounded-full' to={'/login'}><UserCircleIcon className='w-8 mr-2' /><span className=''>{ user?.displayName}</span></Link>
           </div>
         }
       </div>
