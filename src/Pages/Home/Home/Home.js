@@ -1,9 +1,10 @@
 import React from 'react';
+import Inventory from '../Inventory/Inventory';
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Inventory/>
     </div>
   );
 };

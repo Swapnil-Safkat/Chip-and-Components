@@ -59,7 +59,10 @@ hr{
   background-color: rgb(235, 235, 235);
   margin-left: 0;
   padding: 8px 16px;
+  border-left: 4px solid BLUE;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-
+}
+.active:hover{
+  border: none;
 }
