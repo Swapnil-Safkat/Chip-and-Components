@@ -21,7 +21,7 @@ import { signOut } from 'firebase/auth';
 const Header = () => {
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
-  const handleSignOut = ()=>{
+  const handleSignOut = () => {
     signOut(auth);
     navigate('/login')
   };
@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <div className='flex flex-col justify-between menu-logo-size bg-white shadow-lg h-screen sticky top-0 left-0 '>
       <div>
-        <div className='flex justify-center items-center my-6 px-6'>
+        <div onClick={() => { navigate('/home') }} className='flex justify-center items-center my-6 px-6 cursor-pointer'>
           <div className='mr-2 hidden sm:block'><img src={logo} alt="" /></div>
           <h1 className='text-sm sm:text-lg md:text-xl font-bold font-serif text-blue-900  hidden sm:block'>Chip & Comps</h1>
           <h1 className='text-xs font-bold font-mono text-blue-900 sm:hidden block'>C<br />&<br />C</h1>
@@ -47,21 +47,20 @@ const Header = () => {
               <hr />
               <p className='text-gray-400 text-xs font-semibold pl-6 pt-4'>User<span className='hidden sm:inline'> section</span></p>
               <NavLink className={navLinkClass} to={'/manage-items'}><SwitchHorizontalIcon className='w-5 ' /><span className={menuTextClass}>Manage items</span></NavLink>
-              <NavLink className={navLinkClass} to={'/add-items'}><DocumentAddIcon className='w-5 ' /><span className={menuTextClass}>Add items</span></NavLink>
+              <NavLink className={navLinkClass} to={'/add-items'}><ViewGridAddIcon className='w-5 ' /><span className={menuTextClass}>Add items</span></NavLink>
               <NavLink className={navLinkClass} to={'/my-items'}><ServerIcon className='w-5 ' /><span className={menuTextClass}>My items</span></NavLink>
             </div>
           }
           {user ?
             <div className='my-6'>
               <hr />
-              <p className='text-gray-400 text-xs font-semibold pl-6 pt-4'>Authentication</p>
               <button onClick={handleSignOut} className={navLinkClass}><LogoutIcon className='w-5 ' /><span className={menuTextClass}>Sign Out</span></button>
             </div>
             :
             <div className='my-6'>
               <hr />
               <p className='text-gray-400 text-xs font-semibold pl-6 pt-4'>Please login</p>
-              <NavLink className={navLinkClass} to={'/login'}><LoginIcon className='w-5 ' /><span className={menuTextClass}>Sign In</span></NavLink>
+              <NavLink className={navLinkClass} to={'/login'}><LoginIcon className='w-5 ' /><span className={menuTextClass}>Log In</span></NavLink>
               <NavLink className={navLinkClass} to={'/register'}><UserAddIcon className='w-5 ' /><span className={menuTextClass}>Register</span></NavLink>
             </div>
           }
@@ -71,7 +70,7 @@ const Header = () => {
         {
           user &&
           <div className='hidden sm:block'>
-              <Link className='text-xs sm:text-sm md:text-base py-1 px-3 mx-3 my-3 font-semibold flex items-center hover:text-blue-900 hover:bg-blue-200/50 hover:rounded-full' to={'/login'}><UserCircleIcon className='w-8 mr-2' /><span className=''>{ user?.displayName}</span></Link>
+            <Link className='text-xs sm:text-sm md:text-base py-1 px-3 mx-3 my-3 font-semibold flex items-center hover:text-blue-900 hover:bg-blue-200/50 hover:rounded-full' to={'/login'}><UserCircleIcon className='w-8 mr-2' /><span className=''>{user?.displayName}</span></Link>
           </div>
         }
       </div>

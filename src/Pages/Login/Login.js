@@ -1,14 +1,21 @@
 import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useRef } from 'react';
-import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
 import loginAvatar from '../../Images/login/loginAvatar.png';
 import welcomeBack from '../../Images/login/welcomeBack.png';
+import GoogleLogo from '../../Images/login/google30.png';
 
 const Login = () => {
+  //navigate user to where he was
+  const navigate = useNavigate();
+  const location = useLocation()
+  let from = location.state?.from?.pathname || '/home';
+  const [user] = useAuthState(auth);
+  if(user) navigate(from, { replace: true });
   //form submit with email and pass
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword, userEmail, loading, error] = useSignInWithEmailAndPassword(auth);
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const handleFormSubmit = event => {
@@ -17,12 +24,13 @@ const Login = () => {
     const password = passwordRef.current.value;
     signInWithEmailAndPassword(email, password).catch(e => console.log(e.message));
   }
-
-  //navigate user to where he was
-  const navigate = useNavigate();
-  const location = useLocation()
-  let from = location.state?.from?.pathname || '/home';
-  if (user) navigate(from, { replace: true });
+  
+  //google sign in
+  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+  const handleGoogleSignIn = async () => {
+    await signInWithGoogle();
+    navigate(from, { replace: true });
+  }
 
   //navigate to register page
   const navigateRegister = event => {
@@ -31,7 +39,7 @@ const Login = () => {
   }
 
   //send password reset email to user
-  const resetPassword = async() => {
+  const resetPassword = async () => {
     await sendPasswordResetEmail(emailRef.current.value);
     alert('Email Sent')
   }
@@ -40,14 +48,32 @@ const Login = () => {
   const registerClass = 'text-gray-200 text-center text-sm mt-3 font-semibold cursor-pointer hover:underline';
   return (
     <div className='h-screen p-6'>
-      <section className='bg-login p-0 sm:p-4 lg:p-6 rounded-3xl shadow-lg h-full flex justify-center items-center overflow-scroll'>
+      <div className='bg-login p-0 sm:p-4 lg:p-6 rounded-3xl shadow-lg h-full flex justify-center items-center overflow-hidden'>
         <div className='w-full md:w-5/6 flex flex-col md:flex-row items-end md:items-center '>
-          <img className='w-3/4 md:w-1/2 shadow-2xl rounded-3xl' src={loginAvatar} alt="" />
+          <img className='w-full md:w-1/2 shadow-2xl rounded-3xl' src={loginAvatar} alt="" />
           <div className='w-full  md:w-1/2 rounded-r-3xl'>
             <img className='w-1/2 my-6 shadow-2xl rounded-r-3xl' src={welcomeBack} alt="" />
             <div className='flex flex-col justify-center items-center'>
-              <form onSubmit={handleFormSubmit} className='py-6 mb-6'>
+              <div className='w-full'>
                 <h1 className='text-gray-100 text-center font-serif tracking-wide text-lg w-3/4 text-left mx-auto mb-3'>Login your account!</h1>
+                <button onClick={handleGoogleSignIn}
+                  className='flex justify-center items-center w-2/4 py-1  mt-3 mx-auto border-2 bg-gray-100 border-gray-50 rounded-lg shadow-lg'>
+                  {
+                    loadingGoogle ?
+                      <p className='font-bold'>loading...</p> :
+                      <div className='flex justify-center items-center'><img src={GoogleLogo}
+                        alt="Google Sign In" />
+                        <p className='ml-2 font-semibold text-sm'>Google Sign In</p></div>
+                  }
+                </button>
+                <p className='text-red-500 text-center  my-1 text-sm'>{errorGoogle?.message}</p>
+                <div className='flex flex-row justify-center items-center mx-auto w-3/4'>
+                  <hr className='w-1/2 bg-gray-200 border-0'/>
+                  <p className='text-gray-200 mx-4 mb-1 py-1'>or</p>
+                  <hr className='w-1/2'/>
+                </div>
+              </div>
+              <form onSubmit={handleFormSubmit} className='pb-6 mb-6 mx-2'>
                 <input
                   className={inputClass}
                   type="email"
@@ -64,14 +90,14 @@ const Login = () => {
                 <input
                   className='bg-violet-600 hover:text-blue-900 font-bold shadow-lg rounded-xl p-2  mb-6 w-full text-gray-300 hover:bg-gray-100 hover:cursor-pointer'
                   type="submit"
-                  value="Log In" />
-                <p onClick={navigateRegister} className={registerClass}>New To Chip & Comps?<span className='text-yellow-300'> Please Register</span></p>
+                  value={loading?"loading...":"Log In"} />
+                <p onClick={navigateRegister} className={registerClass}>Don't have an account?<span className='text-yellow-300'> Please Register</span></p>
                 <p onClick={resetPassword} className={registerClass}>Forgot Password?<span className='text-yellow-300'> Reset</span></p>
               </form>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

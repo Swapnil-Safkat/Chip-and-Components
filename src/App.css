@@ -51,7 +51,7 @@
 }
 hr{
   height: 1px !important;
-  background-color: #9a9a9a83 !important;
+  background-color: #bcbcbc83 !important;
   border: none;
 }
 .active{
@@ -68,6 +68,12 @@ hr{
 }
 .bg-login{
   background-image: url('./Images/login/background.png');
+  background-repeat: no-repeat;
+  overflow: visible;
+}
+.bg-pages{
+  background-image: url('./Images/Pages/background.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   overflow: visible;
 }
