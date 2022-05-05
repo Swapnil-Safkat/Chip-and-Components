@@ -38,9 +38,9 @@ const Register = () => {
   const inputClass = 'text-center bg-transparent rounded-full shadow-xl border-2 border-gray-200 text-white my-3 p-2 w-full';
   const registerClass = 'text-gray-200 text-center text-sm mt-2 font-semibold cursor-pointer hover:underline';
   return (
-    <div className='h-screen p-6'>
+    <div className='p-2 sm:p-6 flex justify-center items-center'>
       <section className='bg-login p-0 sm:p-4 lg:p-6 rounded-3xl shadow-lg h-full flex justify-center items-center'>
-        <div className='w-full md:w-5/6 flex flex-col md:flex-row items-end md:items-center'>
+        <div className='w-full md:w-5/6 flex flex-col md:flex-row items-end md:items-center p-2'>
           <img className='w-full md:w-1/2 shadow-2xl rounded-xl mb-3' src={loginAvatar} alt="" />
           <div className='w-full  md:w-1/2 rounded-r-3xl'>
             <div className='flex flex-col justify-center items-center'>
@@ -70,7 +70,7 @@ const Register = () => {
                   className='bg-violet-600 hover:text-blue-900 font-bold shadow-lg rounded-xl p-2  mb-6 w-full text-gray-300 hover:bg-gray-100 hover:cursor-pointer'
                   type="submit"
                   value={loading? 'loading...':'Register'} />
-                <p onClick={navigateLogin} className={registerClass}>Already Have an Account?<span className='text-yellow-300'> Please Login</span></p>
+                <p onClick={navigateLogin} className={registerClass}>Already Have an Account?<span className='text-yellow-300'>  Login</span></p>
               </form>
             </div>
           </div>
