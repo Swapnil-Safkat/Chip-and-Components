@@ -6,6 +6,8 @@ import auth from '../../Firebase.init';
 import loginAvatar from '../../Images/login/loginAvatar.png';
 import welcomeBack from '../../Images/login/welcomeBack.png';
 import GoogleLogo from '../../Images/login/google30.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   //navigate user to where he was
@@ -40,15 +42,15 @@ const Login = () => {
 
   //send password reset email to user
   const resetPassword = async () => {
+    toast("Password Reset Email Sent. Please Check Your Email");
     await sendPasswordResetEmail(emailRef.current.value);
-    alert('Email Sent')
   }
 
   const inputClass = 'text-center bg-transparent rounded-full shadow-xl border-2 border-gray-200 text-white my-3 p-2 w-full';
   const registerClass = 'text-gray-200 text-center text-sm mt-3 font-semibold cursor-pointer hover:underline';
   return (
     <div className=' p-2 sm:p-6 flex justify-center items-center'>
-      <div className='bg-login p-0 sm:p-4 lg:p-6 rounded-3xl shadow-lg w-full h-full flex justify-center items-center overflow-auto'>
+      <div className='bg-login p-0 sm:p-4 lg:p-6 rounded-3xl shadow-xl shadow-gray-600 w-full h-full flex justify-center items-center overflow-auto'>
         <div className='w-full md:w-5/6 flex flex-col md:flex-row items-end md:items-center p-2'>
           <img className='w-full md:w-1/2 shadow-2xl rounded-xl mb-3' src={loginAvatar} alt="" />
           <div className='w-full  md:w-1/2 rounded-r-3xl'>
@@ -91,9 +93,10 @@ const Login = () => {
                   className='bg-violet-600 hover:text-blue-900 font-bold shadow-lg rounded-xl p-2  mb-6 w-full text-gray-300 hover:bg-gray-100 hover:cursor-pointer'
                   type="submit"
                   value={loading ? "loading..." : "Log In"} />
-                <p onClick={navigateRegister} className={registerClass}>Don't have an account?<span className='text-yellow-300'> Please Register</span></p>
-                <p onClick={resetPassword} className={registerClass}>Forgot Password?<span className='text-yellow-300'> Reset</span></p>
               </form>
+                <button onClick={navigateRegister} className={registerClass}>Don't have an account?<span className='text-yellow-300'> Please Register</span></button>
+                <button onClick={resetPassword} className={registerClass}>Forgot Password?<span className='text-yellow-300'> Reset</span></button>
+              <ToastContainer />
             </div>
           </div>
         </div>

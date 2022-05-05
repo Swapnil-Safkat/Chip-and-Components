@@ -3,6 +3,9 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.init';
 import loginAvatar from '../../Images/login/loginAvatar.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,6 +27,7 @@ const Register = () => {
     const displayName = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    toast('Email Verification Mail Sent!')
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName });
     navigate(from, { replace: true });
@@ -39,7 +43,7 @@ const Register = () => {
   const registerClass = 'text-gray-200 text-center text-sm mt-2 font-semibold cursor-pointer hover:underline';
   return (
     <div className='p-2 sm:p-6 flex justify-center items-center'>
-      <section className='bg-login p-0 sm:p-4 lg:p-6 rounded-3xl shadow-lg h-full flex justify-center items-center'>
+      <section className='bg-login p-0 sm:p-4 lg:p-6 rounded-3xl shadow-xl shadow-gray-600 w-full flex justify-center items-center'>
         <div className='w-full md:w-5/6 flex flex-col md:flex-row items-end md:items-center p-2'>
           <img className='w-full md:w-1/2 shadow-2xl rounded-xl mb-3' src={loginAvatar} alt="" />
           <div className='w-full  md:w-1/2 rounded-r-3xl'>
@@ -73,6 +77,7 @@ const Register = () => {
                 <p onClick={navigateLogin} className={registerClass}>Already Have an Account?<span className='text-yellow-300'>  Login</span></p>
               </form>
             </div>
+            <ToastContainer/>
           </div>
         </div>
       </section>

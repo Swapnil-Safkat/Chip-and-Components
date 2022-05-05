@@ -29,7 +29,7 @@ const Header = () => {
   const navLinkClass = 'text-xs sm:text-sm md:text-base py-1 px-3 mx-3 my-3 font-semibold text-gray-500 flex items-center hover:text-blue-900 hover:bg-blue-200/50 hover:rounded-full';
   const menuTextClass = 'ml-4 hidden sm:block'
   return (
-    <div className='flex flex-col justify-between menu-logo-size bg-white shadow-lg h-screen sticky top-0 left-0 '>
+    <div className='flex flex-col justify-between menu-logo-size bg-white shadow-xl shadow-gray-600 h-screen sticky top-0 left-0 '>
       <div>
         <div onClick={() => { navigate('/home') }} className='flex justify-center items-center my-6 px-6 cursor-pointer'>
           <div className='mr-2 hidden sm:block'><img src={logo} alt="" /></div>
@@ -41,7 +41,6 @@ const Header = () => {
           <Link className={navLinkClass} to={'/home'}><HomeIcon className='w-5 ' /><span className={menuTextClass}>Home</span></Link>
           <NavLink className={navLinkClass} to={'/home#inventory'}><ChipIcon className='w-5 ' /><span className={menuTextClass}>Inventory</span></NavLink>
           <NavLink className={navLinkClass} to={'/manage-inventory'}><CollectionIcon className='w-5 ' /><span className={menuTextClass}>Manage</span></NavLink>
-          <NavLink className={navLinkClass} to={'/'}><ViewGridAddIcon className='w-5 ' /><span className={menuTextClass}>Add New Item</span></NavLink>
           {user &&
             <div className='my-6'>
               <hr />
