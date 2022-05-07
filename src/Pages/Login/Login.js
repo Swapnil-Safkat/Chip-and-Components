@@ -49,7 +49,7 @@ const Login = () => {
   const inputClass = 'text-center bg-transparent rounded-full shadow-xl border-2 border-gray-200 text-white my-3 p-2 w-full';
   const registerClass = 'text-gray-200 text-center text-sm mt-3 font-semibold cursor-pointer hover:underline';
   return (
-    <div className=' p-2 sm:p-6 flex justify-center items-center'>
+    <div className=' p-2 sm:p-6 flex justify-center items-center h-full'>
       <div className='bg-login p-0 sm:p-4 lg:p-6 rounded-3xl shadow-xl shadow-gray-600 w-full h-full flex justify-center items-center overflow-auto'>
         <div className='w-full md:w-5/6 flex flex-col md:flex-row items-end md:items-center p-2'>
           <img className='w-full md:w-1/2 shadow-2xl rounded-xl mb-3' src={loginAvatar} alt="" />

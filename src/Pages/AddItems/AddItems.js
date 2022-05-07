@@ -36,9 +36,9 @@ const AddItems = () => {
   };
 
   const loading = false;
-  const inputClass = 'bg-gray-500 rounded-full font-semibold text-gray-200 text-sm my-2 p-2 py-3 pl-5 w-full';
+  const inputClass = 'bg-gray-700 rounded-lg font-semibold text-gray-200 text-sm my-2 p-2 py-3 pl-5 w-full';
   return (
-    <div className='p-2 sm:p-6 flex justify-center items-center'>
+  <div className='h-full p-2 sm:p-6 flex justify-center items-center'>
       <div className='bg-pages p-2 sm:p-4 lg:p-12 rounded-3xl shadow-xl  shadow-gray-600 w-full h-full flex justify-center items-center overflow-auto'>
         <section className='bg-gray-200/80 sm:bg-white/95 w-full sm:w-3/4 md:w-1/2 rounded-3xl border-2 border-violet-600 shadow-2xl shadow-gray-700 p-1 sm:p-6 pt-3'>
           <h1 className='text-center text-gray-700 font-semibold font-serif text-lg sm:text-3xl'>Add Your Product</h1>
@@ -88,7 +88,7 @@ const AddItems = () => {
                 placeholder='Product Details'
                 required /><br />
               <input
-                className='bg-violet-600 hover:text-blue-900 font-bold shadow-lg rounded-xl p-2 mx-auto mb-6 w-full lg:w-1/2 text-gray-300 hover:bg-gray-100 hover:cursor-pointer'
+                className='bg-violet-600 hover:text-blue-900 font-bold shadow-lg rounded-full p-2 mx-auto mb-6 w-full lg:w-1/2 text-gray-300 hover:bg-gray-100 hover:cursor-pointer'
                 type="submit"
                 value={loading ? "loading..." : "Add Product"} />
             </form>

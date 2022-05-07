@@ -32,29 +32,35 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-.bg-site{
+
+.bg-site {
   background-color: #f3f3f3;
 }
-.btn-img-size{
-  height:4rem;
+
+.btn-img-size {
+  height: 4rem;
   width: 8rem;
 }
-.menu-logo-size{
-}
-.menu-logo-size img{
+
+.menu-logo-size {}
+
+.menu-logo-size img {
   height: 2rem;
   width: 3rem;
 }
-hr{
+
+hr {
   height: 1px !important;
   background-color: #bcbcbc83 !important;
   border: none;
 }
-.active{
+
+.active {
   color: black;
   background-color: rgb(235, 235, 235);
   margin-left: 0;
@@ -63,17 +69,34 @@ hr{
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
-.active:hover{
+
+.active:hover {
   border: none;
 }
-.bg-login{
+
+.bg-login {
   background-image: url('./Images/login/background.png');
+  background-size: cover;
   background-repeat: no-repeat;
-  overflow: visible;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
-.bg-pages{
+
+.bg-pages {
   background-image: url('./Images/Pages/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  overflow: visible;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.bg-inventory {
+  background-image: url('./Images/Pages/homeBackground.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
