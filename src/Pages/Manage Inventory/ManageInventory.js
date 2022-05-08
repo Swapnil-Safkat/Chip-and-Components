@@ -25,8 +25,7 @@ const ManageInventory = () => {
         })
     }
 
-  }
-    ;
+  };
   return (
     <div className='h-full w-full p-2 sm:p-6 flex justify-center items-center'>
       <div className='bg-inventory p-2 sm:p-4 lg:p-12 rounded-3xl shadow-xl  shadow-gray-600 w-full h-full flex flex-col justify-start items-center'>

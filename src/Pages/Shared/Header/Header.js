@@ -12,7 +12,8 @@ import {
   LoginIcon,
   UserAddIcon,
   LogoutIcon,
-  UserCircleIcon
+  UserCircleIcon,
+  DocumentIcon
 } from '@heroicons/react/solid';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../Firebase.init';
@@ -41,6 +42,7 @@ const Header = () => {
           <Link className={navLinkClass} to={'/home'}><HomeIcon className='w-5 ' /><span className={menuTextClass}>Home</span></Link>
           <NavLink className={navLinkClass} to={'/home#inventory'}><ChipIcon className='w-5 ' /><span className={menuTextClass}>Inventory</span></NavLink>
           <NavLink className={navLinkClass} to={'/manage-inventory'}><CollectionIcon className='w-5 ' /><span className={menuTextClass}>Manage</span></NavLink>
+          <NavLink className={navLinkClass} to={'/blogs'}><DocumentIcon className='w-5 ' /><span className={menuTextClass}>Blogs</span></NavLink>
           {user &&
             <div className='my-6'>
               <hr />

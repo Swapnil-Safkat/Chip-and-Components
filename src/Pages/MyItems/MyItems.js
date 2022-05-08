@@ -10,8 +10,20 @@ const MyItems = () => {
   useEffect(() => {
     const url = `${serverLink()}product`;
     fetch(url).then(res => res.json()).then(data => setProducts(data))
-  }, []);
-  
+  }, [])
+
+  const handleDeleteItem = (id, name) => {
+    const proceed = window.confirm(`Want to remove item ${name}`);
+    if (proceed) {
+      toast('Removed Item');
+      fetch(`${serverLink()}item/${id}`, {
+        method: 'DELETE'
+      }).then(res => res.json)
+        .then(data => {
+          const remaining = products.filter(u => u._id !== id);
+          setProducts(remaining);
+        })
+    } };
   return (
     <div className='h-full w-full p-2 sm:p-6 flex justify-center items-center'>
     <div className='bg-inventory p-2 sm:p-4 lg:p-12 rounded-3xl shadow-xl  shadow-gray-600 w-full h-full flex flex-col justify-start items-center'>
@@ -22,7 +34,7 @@ const MyItems = () => {
       </div>
       <div className='w-full mt-6 flex flex-col'>
         {
-            products.map(product => <ManageProduct  key={product._id} product={product} handleDeleteItem={handleDeleteItem}></ManageProduct>)
+          products.map(product => <ManageProduct key={product._id} product={product} handleDeleteItem={handleDeleteItem}></ManageProduct>)
         }
       </div>
       <ToastContainer />
